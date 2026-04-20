@@ -13,6 +13,9 @@ d3 <- mutate(d2, new_col = 1)
 d4 <- arrange(d3, new_col)
 d5 <- summarise(d4, n = n())
 
+print("DPLYR OUTPUT:")
+print(d5)
+
 # 2. tidyr
 suppressMessages(library(tidyr))
 # Functions: drop_na, replace_na, pivot_longer, pivot_wider, separate
@@ -23,6 +26,10 @@ t3 <- pivot_longer(toy_df, cols = starts_with("val"))
 t4 <- pivot_wider(t3, names_from = name, values_from = value)
 t5 <- separate(toy_df, col = "id", into = c("id_num", "id_char"), sep = "_")
 
+print("TIDYR OUTPUT:")
+print(t3)
+
+
 # 3. stringr
 suppressMessages(library(stringr))
 # Functions: str_length, str_to_lower, str_to_upper, str_detect, str_replace
@@ -31,6 +38,10 @@ s2 <- str_to_lower("HELLO")
 s3 <- str_to_upper("hello")
 s4 <- str_detect("hello", "e")
 s5 <- str_replace("hello", "e", "A")
+
+
+print("STRINGR OUTPUT:")
+print(s1)
 
 # 4. lubridate
 suppressMessages(library(lubridate))
@@ -41,6 +52,9 @@ l3 <- year(l1)
 l4 <- day(l1)
 l5 <- today()
 
+print("LUBRIDATE OUTPUT:")
+print(l1)
+
 # 5. purrr
 suppressMessages(library(purrr))
 # Functions: map, map_dbl, map_chr, map_lgl, keep
@@ -49,5 +63,8 @@ p2 <- map_dbl(1:3, ~ as.numeric(.x))
 p3 <- map_chr(1:3, ~ as.character(.x))
 p4 <- map_lgl(1:3, ~ .x > 1)
 p5 <- keep(1:5, ~ .x > 3)
+
+print("PURRR OUTPUT:")
+print(p1)
 
 print("Analysis executed successfully.")

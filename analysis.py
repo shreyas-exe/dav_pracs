@@ -24,7 +24,7 @@ print("Median:", np.median(arr))
 print("Std:", np.std(arr))
 print("Linspace:", np.linspace(0, 10, 5))
 
-# 3. Scipy.stats: ttest_ind, pearsonr, shapiro, norm.pdf, describe
+# # 3. Scipy.stats: ttest_ind, pearsonr, shapiro, norm.pdf, describe
 x_data = np.random.randn(100)
 y_data = np.random.randn(100)
 print("T-test:", stats.ttest_ind(x_data, y_data))
@@ -33,14 +33,14 @@ print("Shapiro:", stats.shapiro(x_data))
 print("Norm PDF:", stats.norm.pdf(0))
 print("Describe:", stats.describe(x_data))
 
-# 4. Statsmodels: add_constant, OLS, fit, summary, predict
+# # 4. Statsmodels: add_constant, OLS, fit, summary, predict
 X_sm = sm.add_constant(x_data)
 model = sm.OLS(y_data, X_sm)
 results = model.fit()
 print(results.summary())
 print("Predict:", results.predict(X_sm[:5]))
 
-# 5. Sklearn: StandardScaler, fit, transform, inverse_transform, get_params
+# # 5. Sklearn: StandardScaler, fit, transform, inverse_transform, get_params
 scaler = StandardScaler()
 scaler.fit(X_sm)
 scaled_X = scaler.transform(X_sm)
