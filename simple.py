@@ -28,9 +28,7 @@ y_pred = m * x + b
 # Plot graph
 plt.scatter(x, y)
 
-# Sort before plotting line for a clean regression line
-sort_idx = np.argsort(x)
-plt.plot(x[sort_idx], y_pred[sort_idx], color="red")
+plt.plot(x, y_pred, color="red")
 
 plt.xlabel("Years of Experience")
 plt.ylabel("Salary")
