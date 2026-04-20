@@ -1,4 +1,4 @@
-#replace valuw with actual column names
+#replace value with actual column names
 
 import pandas as pd
 import matplotlib.pyplot as plt
