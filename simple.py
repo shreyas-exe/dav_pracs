@@ -1,24 +1,38 @@
 import pandas as pd
-from sklearn.linear_model import LinearRegression
+import numpy as np
 import matplotlib.pyplot as plt
 
 # Load dataset
-df = pd.read_csv("data.csv")
+df = pd.read_csv("dataset_slr.csv")
 
-# Select independent and dependent variables
-X = df[["x_column"]]   # independent variable
-y = df["y_column"]     # dependent variable
+# Select independent and dependent variables as 1D arrays
+x = df["YearsExperience"].to_numpy(dtype=float)
+y = df["Salary"].to_numpy(dtype=float)
 
-# Create model
-model = LinearRegression()
+# Train model from scratch using least squares for y = m*x + b
+x_mean = np.mean(x)
+y_mean = np.mean(y)
 
-# Train model
-model.fit(X, y)
+numerator = np.sum((x - x_mean) * (y - y_mean))
+denominator = np.sum((x - x_mean) ** 2)
+
+if denominator == 0:
+	raise ValueError("Cannot fit regression: all YearsExperience values are identical.")
+
+m = numerator / denominator
+b = y_mean - m * x_mean
 
 # Predict values
-y_pred = model.predict(X)
+y_pred = m * x + b
 
 # Plot graph
-plt.scatter(X, y)
-plt.plot(X, y_pred)
+plt.scatter(x, y)
+
+# Sort before plotting line for a clean regression line
+sort_idx = np.argsort(x)
+plt.plot(x[sort_idx], y_pred[sort_idx], color="red")
+
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary")
+plt.title("Linear Regression")
 plt.show()
